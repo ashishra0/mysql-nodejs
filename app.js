@@ -8,10 +8,18 @@ const conn = mysql.createConnection({
   database: 'join_us'
 });
 
-let q = 'SELECT CURDATE() AS answer';
+let data = [];
+for (let i = 0; i < 500; i++) {
+  data.push([
+    faker.internet.email(),
+    faker.date.past()
+  ]);
+}
 
-conn.query(q, (error, results, fields) => {
-  if (error) throw error;
-  console.log(results[0].answer)
+let q = 'INSERT INTO users (email, created_at) VALUES ?'
+
+conn.query(q, [data], (err, result) => {
+  if (err) throw err;
+  console.log(result)
 })
 conn.end();
