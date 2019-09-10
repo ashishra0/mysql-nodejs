@@ -18,6 +18,7 @@ for (let i = 0; i < 500; i++) {
 
 let q = 'INSERT INTO users (email, created_at) VALUES ?'
 
+// bulk insert
 conn.query(q, [data], (err, result) => {
   if (err) throw err;
   console.log(result)
