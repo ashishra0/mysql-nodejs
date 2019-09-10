@@ -8,10 +8,10 @@ const conn = mysql.createConnection({
   database: 'join_us'
 });
 
-let q = 'SELECT CURDATE()';
+let q = 'SELECT CURDATE() AS answer';
 
 conn.query(q, (error, results, fields) => {
   if (error) throw error;
-  console.log(results)
+  console.log(results[0].answer)
 })
 conn.end();
